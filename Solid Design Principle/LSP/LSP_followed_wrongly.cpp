@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
+#include <typeinfo>
 
 using namespace std;
 
@@ -77,10 +78,42 @@ public:
     }
 };
 
+class BankClient {
+    private: 
+        vector<Account*> accounts;
+
+    public:
+        BankClient(vector<Account*> accounts) {
+            this->accounts = accounts;
+        }    
+
+        void processTransactions() {
+        for (Account* acc : accounts) {
+            acc->deposit(1000);
+
+            //Checking account type explicitly
+            if (typeid(*acc) == typeid(FixedTermAccount)) {
+                cout << "Skipping withdrawal for Fixed Term Account.\n";
+            } else {
+                try {
+                    acc->withdraw(500);
+                } catch (const logic_error& e) {
+                    cout << "Exception: " << e.what() << endl;
+                }
+            }
+        }
+    }
+};
 
 int main () {
 
+    vector<Account*> accounts;
+    accounts.push_back(new SavingAccount());
+    accounts.push_back(new CurrentAccount());
+    accounts.push_back(new FixedTermAccount());
 
+    BankClient* client = new BankClient(accounts);
+    client->processTransactions();
 
     return 0;
 }
