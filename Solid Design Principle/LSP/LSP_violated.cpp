@@ -14,19 +14,16 @@ private:
     double balance;
 
 public:
-    SavingAccount()
-    {
+    SavingAccount() {
         balance = 0;
     }
 
-    void deposit(double amount)
-    {
+    void deposit(double amount) {
         balance += amount;
         cout << "Deposited: " << amount << " in Savings Account. New Balance: " << balance << endl;
     }
 
-    void withdraw(double amount)
-    {
+    void withdraw(double amount)  {
         if (balance >= amount)
         {
             balance -= amount;
@@ -44,19 +41,16 @@ private:
     double balance;
 
 public:
-    CurrentAccount()
-    {
+    CurrentAccount() {
         balance = 0;
     }
 
-    void deposit(double amount)
-    {
+    void deposit(double amount) {
         balance += amount;
         cout << "Deposited: " << amount << " in Current Account. New Balance: " << balance << endl;
     }
 
-    void withdraw(double amount)
-    {
+    void withdraw(double amount) {
         if (balance >= amount)
         {
             balance -= amount;
@@ -74,19 +68,16 @@ private:
     double balance;
 
 public:
-    FixedAccountTerm()
-    {
+    FixedAccountTerm() {
         balance = 0;
     }
 
-    void deposit(double amount)
-    {
+    void deposit(double amount) {
         balance += amount;
         cout << "Deposited: " << amount << " in Fixed Term Account. New Balance: " << balance << endl;
     }
 
-    void withdraw(double amount)
-    {
+    void withdraw(double amount) {
         throw logic_error("Withdrawal not allowed in Fixed Term Account!");
     }
 };
