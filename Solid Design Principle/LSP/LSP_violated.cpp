@@ -107,7 +107,7 @@ public:
 };
 
 int main() {
- 
+
     // Make a list of accounts of customer.
     vector<Account*> accounts;
 
